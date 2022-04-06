@@ -15,7 +15,21 @@ public class ServeceTest {
     //增加文章
     @Test
     public void test01(){
-        Passage passage = new Passage("123456","阳光养猪场","dfjhdjdshfjksdfhk");
-        passageServece.addPassage(passage);
+        Integer id = 123787328;
+        for (int i = 0; i < 50; i++) {
+            id += 1;
+            Passage passage = new Passage(id.toString(),"阳光养猪场","dfjhdjdshfjksdfhk");
+            passageServece.addPassage(passage);
+        }
+    }
+
+    @Test
+    public void test02(){
+        System.out.println(passageServece.getAllPassages());
+    }
+
+    @Test
+    public void test03(){
+
     }
 }

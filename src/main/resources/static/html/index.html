@@ -2,10 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>首页</title>
-  <link rel="stylesheet" href="../css/index.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <script type="text/javascript" src="../js/jquery.js"></script>
 </head>
 <body>
-<div id="id1">Hello world!</div>
+<div class="content">
+    <div class="login-box">
+        <h1>SIGN IN</h1>
+        <div class="output-frame">
+            <label for="username">账号</label>
+            <input type="text" id="username" autofocus>
+        </div>
+        <div class="output-frame">
+            <label for="password">密码</label>
+            <input type="password" id="password">
+        </div>
+        <button class="login-btn" onclick="login()">登录</button>
+    </div>
+</div>
+<script type="text/javascript">
+    function login() {
+        var data = {};
+        data['username'] = $('#username').val();
+        data['password'] = $('#password').val();
+        $.ajaxSetup({contentType: "application/json; charset=utf-8"})
+        $.post("login", JSON.stringify(data), function (res) {
+            if (res.ok){
+                location.href = 'blogs';
+            }else {
+                alert(JSON.stringify(res));
+            }
+        }, 'json');
+    }
+</script>
 </body>
 </html>
