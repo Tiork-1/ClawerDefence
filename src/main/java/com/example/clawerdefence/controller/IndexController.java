@@ -14,7 +14,7 @@ import java.util.Map;
 public class IndexController {
     @GetMapping("/")
     public String index(){
-        return "/html/index.html";
+        return "index";
     }
 
     @PostMapping("/login")
@@ -34,6 +34,6 @@ public class IndexController {
 
     @GetMapping("/blogs")
     public String toblogs(){
-        return "/html/blogs.html";
+        return "blogs";
     }
 }

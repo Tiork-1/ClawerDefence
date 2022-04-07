@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>博客列表</title>
+    <link rel="stylesheet" th:href="@{../css/blogs.css}">
+    <script type="text/javascript" th:src="@{../js/jquery.js}"></script>
+</head>
+<body>
+<div class="buttons">
+    <button class="addblog" onclick="addBlog()">写博客</button>
+    <button class="showdatas">看数据</button>
+</div>
+<div class="blog-list" id="blog-list">
+</div>
+<script type="text/javascript">
+    $.ajaxSetup({contentType: "application/json; charset=utf-8"})
+    $.get("getbloglist", null, function (res) {
+        var resData = res;
+        var cent = document.getElementById("blog-list");
+        for (let i = 0; i < resData.length; i++) {
+            var id = resData[i].id;
+            var title = resData[i].title;
+            var headWords = resData[i].context;
+            if(headWords.length > 50){
+                headWords =  headWords.substring(0,50);
+                headWords += "......>>>";
+            }
+            cent.innerHTML += "    <div class=\"blog-item\" onclick=\"showBlog("+id+")\" id="+id+">\n" +
+                "        <p class=\"blog-title\">"+title+"</p>\n" +
+                "        <p class=\"blog-head-words\">"+headWords+"</p>\n" +
+                "    </div>"
+        }
+    }, 'json');
+
+    function showBlog(id){
+        var path = "blogs/"+id.toString();
+        location.href = path;
+    }
+
+    function addBlog(){
+        location.href = "blogEditor";
+    }
+
+</script>
+</body>
+</html>

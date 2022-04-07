@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Random;
+
 @SpringBootTest
 public class ServeceTest {
     @Autowired
@@ -30,6 +32,9 @@ public class ServeceTest {
 
     @Test
     public void test03(){
-
+        //        生成随机数
+        Random random = new Random();
+        Integer x = random.nextInt(100000000);
+        System.out.println(x);
     }
 }

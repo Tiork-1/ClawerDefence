@@ -5,12 +5,11 @@ import com.example.clawerdefence.pojo.Passage;
 import com.example.clawerdefence.service.PassageServece;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 @Controller
 public class BlogController {
@@ -27,14 +26,17 @@ public class BlogController {
 
     @GetMapping("/blogEditor")
     public String blogEditor(){
-        return "/html/addblog.html";
+        return "addblog";
     }
 
-    @GetMapping("/addblog")
-    public String addBlog(@RequestBody Map<String,Object> args){
-        String title = (String) args.get("title");
-        String context = (String) args.get("context");
-        passageServece.addPassage(new Passage(null,title,context));
-        return "forward:/blogs";
+
+    @RequestMapping("/publish")
+//    @ResponseBody
+    public String publishArticle(Passage passage) {
+        Random random = new Random();
+        Integer x = random.nextInt(100000000);
+        passage.setId(x.toString());
+        boolean res = passageServece.addPassage(passage);
+        return "success";
     }
 }

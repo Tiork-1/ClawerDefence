@@ -1,0 +1,30 @@
+body{
+    background: -webkit-linear-gradient(right, rgb(25, 0, 255) , rgb(111, 0, 255),rgb(242, 0, 250));
+    background: -o-linear-gradient(right, rgb(25, 0, 255) , rgb(111, 0, 255),rgb(242, 0, 250));
+    background: -moz-linear-gradient(right, rgb(25, 0, 255) , rgb(111, 0, 255),rgb(242, 0, 250));
+    background: linear-gradient(right, rgb(25, 0, 255) , rgb(111, 0, 255),rgb(242, 0, 250));
+}
+
+#input-title{
+    position: absolute;
+    left: 5%;
+    top: 5%;
+    font-size: 15px;
+    display: flex;
+}
+
+#test-editormd{
+    position: absolute;
+    top: 13%;
+    left: 5%;
+}
+#title-input-area{
+    position: relative;
+    top: 4%;
+    left: 5px;
+    width: 600px;
+}
+#title-word{
+    font-size: 20px;
+    color: whitesmoke;
+}

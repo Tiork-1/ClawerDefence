@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>文章</title>
+  <link rel="stylesheet" th:href="@{../css/examples/style.css}" />
+  <link rel="stylesheet" th:href="@{../css/editormd.css}" />
+  <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />
+</head>
+<body>
+
+<div id="layout">
+  <header>
+    <h1>求出所有LIS的可行起点</h1>
+    <h2>求出所有LIS的可行起点</h2>
+  </header>
+  <div id="test-editormd">
+    <textarea style="display:none;" id="blog-text"># aaaaaaaaaaaaaaaaaaaa</textarea>
+  </div>
+</div>
+
+
+<script src="../js/examples/jquery.min.js"></script>
+<script src="../lib/marked.min.js"></script>
+<script src="../lib/prettify.min.js"></script>
+<script src="../lib/raphael.min.js"></script>
+<script src="../lib/underscore.min.js"></script>
+<script src="../lib/sequence-diagram.min.js"></script>
+<script src="../lib/flowchart.min.js"></script>
+<script src="../lib/jquery.flowchart.min.js"></script>
+<script src="../js/editormd.min.js"></script>
+<script type="text/javascript">
+
+  var testEditor;
+
+  $(function () {
+    testEditor = editormd.markdownToHTML("test-editormd", {
+      width: "90%",
+      height: 700,
+      path: "../lib/",
+      preview: true,
+      watch: true,
+      editor: false,
+    })
+  })
+
+</script>
+<script>
+  var cent = document.getElementById("blog-text");
+  cent.innerText += "```fuck```"
+</script>
+</body>
+</html>

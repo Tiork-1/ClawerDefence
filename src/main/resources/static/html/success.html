@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            background: -webkit-linear-gradient(right, rgb(25, 0, 255) , rgb(111, 0, 255),rgb(242, 0, 250));
+            background: -o-linear-gradient(right, rgb(25, 0, 255) , rgb(111, 0, 255),rgb(242, 0, 250));
+            background: -moz-linear-gradient(right, rgb(25, 0, 255) , rgb(111, 0, 255),rgb(242, 0, 250));
+            background: linear-gradient(right, rgb(25, 0, 255) , rgb(111, 0, 255),rgb(242, 0, 250));
+        }
+        #publish-word{
+            position: absolute;
+            font-size: 80px;
+            left: 41%;
+            font-weight: bolder;
+            color: whitesmoke;
+        }
+        #back-button{
+            position: absolute;
+            left: 48%;
+            top: 35%;
+            width: 100px;
+            height: 40px;
+            background-color: rgba(212, 0, 219, 0.6);
+            border-radius: 10px;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<p id="publish-word">发布成功</p>
+<button id="back-button" onclick="back()">返回</button>
+<script type="text/javascript">
+  function back(){
+    location.href = "/blogs";
+  }
+</script>
+</body>
+</html>

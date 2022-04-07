@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
-    <title>Simple example - Editor.md examples</title>
-    <link rel="stylesheet" href="../css/examples/style.css" />
-    <link rel="stylesheet" href="../css/editormd.css" />
-    <link rel="stylesheet" href="../css/addblog.css">
+    <title>编辑博客</title>
+    <link rel="stylesheet" th:href="@{../css/examples/style.css}" />
+    <link rel="stylesheet" th:href="@{../css/editormd.css}" />
+    <link rel="stylesheet" th:href="@{../css/addblog.css}">
     <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />
 </head>
 <body>
@@ -21,8 +21,8 @@
 
 </div>
 
-<script src="../js/examples/jquery.min.js"></script>
-<script src="../js/editormd.min.js"></script>
+<script th:src="@{../js/examples/jquery.min.js}"></script>
+<script th:src="@{../js/editormd.min.js}"></script>
 <script type="text/javascript">
     var testEditor;
 
