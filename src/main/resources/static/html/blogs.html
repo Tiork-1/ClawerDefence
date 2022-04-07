@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="buttons">
-    <button class="addblog">写博客</button>
+    <button class="addblog" onclick="addBlog()">写博客</button>
     <button class="showdatas">看数据</button>
 </div>
 <div class="blog-list" id="blog-list">
@@ -35,8 +35,11 @@
 
     function showBlog(id){
         var path = "blogs/"+id.toString();
-        alert(path);
-        location.href = 'blogs/';
+        location.href = path;
+    }
+
+    function addBlog(){
+        location.href = "blogEditor";
     }
 
 </script>

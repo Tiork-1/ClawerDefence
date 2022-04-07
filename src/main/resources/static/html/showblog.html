@@ -3,9 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script type="text/javascript" src="../js/jquery.js"></script>
 </head>
 <body>
 <h1>展示博客</h1>
+<div id="show-blog">
+</div>
 
+<script type="text/javascript">
+    var id = null;
+    var cent = document.getElementById("show-blog");
+    var data = {};
+    $.ajaxSetup({contentType: "application/json; charset=utf-8"})
+    $.get("getReadingBlog", null, function (res) {
+        id = res.describe;
+        data['id'] = id;
+
+        $.ajaxSetup({contentType: "application/json; charset=utf-8"})
+        $.post("getBlogById", JSON.stringify(data), function (res) {
+            cent.innerHTML += "<h1>"+res.title+"</h1>";
+            cent.innerHTML += "<p>"+res.context+"</p>";
+        }, 'json');
+    }, 'json');
+
+
+</script>
 </body>
 </html>
