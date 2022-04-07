@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<html>
+<body>
+
+<div>
+  <input id="code" placeholder="验证码" type="text" class=""
+         style="width:170px">
+  <!-- 验证码 显示 -->
+    <span onclick="getvCode()">
+        <img οnclick="getvCode()" id="verifyimg" style="margin-left: 20px;" src="https://img0.baidu.com/it/u=2673243120,3070690751&fm=253&fmt=auto&app=138&f=JPEG?w=417&h=211"/>
+    </span>
+</div>
+
+<script type="text/javascript">
+  getvCode();
+
+  /**
+   * 获取验证码
+   * 将验证码写到login.html页面的id = verifyimg 的地方
+   */
+  function getvCode() {
+    document.getElementById("verifyimg").src = timestamp("http://localhost:8080/verifyCode");
+  }
+  //为url添加时间戳
+  function timestamp(url) {
+    var getTimestamp = new Date().getTime();
+    if (url.indexOf("?") > -1) {
+      url = url + "&timestamp=" + getTimestamp
+    } else {
+      url = url + "?timestamp=" + getTimestamp
+    }
+    return url;
+  };
+</script>
+</body>
+
+</html>
+</body>
+</html>

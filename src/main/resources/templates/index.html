@@ -20,7 +20,14 @@
             <label for="password">密码</label>
             <input type="password" id="password">
         </div>
+        <div class="output-frame">
+            <label for="password">验证码</label>
+            <input type="text" id="verifycode">
+        </div>
         <button class="login-btn" onclick="login()">登录</button>
+        <span onclick="getvCode()">
+            <img οnclick="getvCode()" id="verifyimg" style="margin-left: 20px;"/>
+        </span>
     </div>
 </div>
 <script type="text/javascript">
@@ -28,15 +35,37 @@
         var data = {};
         data['username'] = $('#username').val();
         data['password'] = $('#password').val();
+        data['verifycode'] = $('#verifycode').val();
         $.ajaxSetup({contentType: "application/json; charset=utf-8"})
         $.post("login", JSON.stringify(data), function (res) {
             if (res.ok){
                 location.href = 'blogs';
             }else {
-                alert(JSON.stringify(res));
+                alert(res.describe);
             }
         }, 'json');
     }
+</script>
+
+<script type="text/javascript">
+    getvCode();
+    /**
+     * 获取验证码
+     * 将验证码写到login.html页面的id = verifyimg 的地方
+     */
+    function getvCode() {
+        document.getElementById("verifyimg").src = timestamp("http://localhost:8080/verifyCode");
+    }
+    //为url添加时间戳
+    function timestamp(url) {
+        var getTimestamp = new Date().getTime();
+        if (url.indexOf("?") > -1) {
+            url = url + "&timestamp=" + getTimestamp
+        } else {
+            url = url + "?timestamp=" + getTimestamp
+        }
+        return url;
+    };
 </script>
 </body>
 </html>

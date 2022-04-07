@@ -15,7 +15,7 @@
     <div id="title-area"><p id="blog-title-word" th:text="${passage.getTitle()}"></p></div>
     <div id="context-area">
         <div id="test-editormd">
-            <textarea style="display:none;" th:text="${passage.getContext()}"></textarea>
+<!--            <textarea style="display:none;" th:text="${passage.getContext()}"></textarea>-->
         </div>
     </div>
 </div>
@@ -44,6 +44,12 @@
             editor: false,
         })
     })
+</script>
+<script th:inline="javascript">
+    let courseAvgs = [[${passage}]];
+    var cent = document.getElementById("test-editormd");
+    cent.innerHTML += " <textarea style=\"display:none;\">"+courseAvgs.context+"</textarea>"
+    console.log(courseAvgs);
 </script>
 
 </body>

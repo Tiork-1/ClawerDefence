@@ -25,7 +25,6 @@ public class ShowBlogController {
     public String getSpecificPassage(HttpSession session, @PathVariable("id") String id, Model model){
         session.setAttribute("blogId",id);
         Passage passage = passageServece.getPassageById(id);
-        System.out.println(passage);
         model.addAttribute("passage",passage);
         return "showblog";
     }
@@ -44,7 +43,6 @@ public class ShowBlogController {
         String id = (String) args.get("id");
         System.out.println(id);
         Passage passage = passageServece.getPassageById(id);
-        System.out.println(passage);
         return JSON.toJSONString(passage);
     }
 }
