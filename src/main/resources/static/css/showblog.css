@@ -1,0 +1,38 @@
+
+body{
+    background: -webkit-linear-gradient(right, rgb(25, 0, 255) , rgb(111, 0, 255),rgb(242, 0, 250));
+    background: -o-linear-gradient(right, rgb(25, 0, 255) , rgb(111, 0, 255),rgb(242, 0, 250));
+    background: -moz-linear-gradient(right, rgb(25, 0, 255) , rgb(111, 0, 255),rgb(242, 0, 250));
+    background: linear-gradient(right, rgb(25, 0, 255) , rgb(111, 0, 255),rgb(242, 0, 250));
+}
+
+#blog-area{
+    position: absolute;
+    width: 70%;
+    left: 15%;
+    top: 10%;
+    height: 100%;
+    /*background-color: rgba(255,255,255,0.6);*/
+}
+
+#title-area{
+    position: absolute;
+    height: 120px;
+    width: 100%;
+    background-color: rgba(0,0,0,0.2);
+}
+#context-area{
+    position: absolute;
+    top: 120px;
+    width: 100%;
+}
+#test-editormd{
+    position: absolute;
+    width: 96.4%;
+    background-color: rgba(255,255,255,0.7);
+}
+#blog-title-word{
+    position: absolute;
+    left: 20px;
+    font-size: 32px;
+}

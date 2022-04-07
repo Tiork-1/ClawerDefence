@@ -6,13 +6,20 @@
     <script type="text/javascript" src="../js/jquery.js"></script>
 </head>
 <body>
-<h1>展示博客</h1>
-<div id="show-blog">
+
+<div id="blog-area">
+    <div id="title-area"><p id="blog-title-word"></p></div>
+    <div id="context-area">
+        <div id="test-editormd">
+            <textarea id="blog-text" style="display: none"></textarea>
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript">
     var id = null;
-    var cent = document.getElementById("show-blog");
+    var cent1 = document.getElementById("blog-title-word");
+    var cent2 = document.getElementById("blog-text");
     var data = {};
     $.ajaxSetup({contentType: "application/json; charset=utf-8"})
     $.get("getReadingBlog", null, function (res) {
@@ -21,12 +28,43 @@
 
         $.ajaxSetup({contentType: "application/json; charset=utf-8"})
         $.post("getBlogById", JSON.stringify(data), function (res) {
-            cent.innerHTML += "<h1>"+res.title+"</h1>";
-            cent.innerHTML += "<p>"+res.context+"</p>";
+            cent1.innerText += ""+res.title+"";
+            cent2.innerText += "hahahahahhahahaha"
+            console.log(res.title,res.context);
         }, 'json');
     }, 'json');
 
+</script>
+
+
+<script src="../js/examples/jquery.min.js"></script>
+<script src="../lib/marked.min.js"></script>
+<script src="../lib/prettify.min.js"></script>
+<script src="../lib/raphael.min.js"></script>
+<script src="../lib/underscore.min.js"></script>
+<script src="../lib/sequence-diagram.min.js"></script>
+<script src="../lib/flowchart.min.js"></script>
+<script src="../lib/jquery.flowchart.min.js"></script>
+<script src="../js/editormd.min.js"></script>
+<script type="text/javascript">
+
+    var testEditor;
+
+    $(function () {
+        testEditor = editormd.markdownToHTML("test-editormd", {
+            width: "90%",
+            height: 700,
+            path: "../lib/",
+            preview: true,
+            watch: true,
+            editor: false,
+        })
+    })
 
 </script>
+<link rel="stylesheet" href="../css/showblog.css">
+<link rel="stylesheet" href="../css/examples/style.css" />
+<link rel="stylesheet" href="../css/editormd.css" />
+<link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />
 </body>
 </html>
