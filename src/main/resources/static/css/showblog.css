@@ -1,9 +1,9 @@
 
 body{
-    background: -webkit-linear-gradient(right, rgb(25, 0, 255) , rgb(111, 0, 255),rgb(242, 0, 250));
-    background: -o-linear-gradient(right, rgb(25, 0, 255) , rgb(111, 0, 255),rgb(242, 0, 250));
-    background: -moz-linear-gradient(right, rgb(25, 0, 255) , rgb(111, 0, 255),rgb(242, 0, 250));
-    background: linear-gradient(right, rgb(25, 0, 255) , rgb(111, 0, 255),rgb(242, 0, 250));
+    background: -webkit-linear-gradient(right, rgb(244, 208, 0) , rgb(229,131,8),rgb(220,87,18));
+    background: -o-linear-gradient(right, rgb(244, 208, 0) , rgb(229,131,8),rgb(220,87,18));
+    background: -moz-linear-gradient(right, rgb(244, 208, 0) , rgb(229,131,8),rgb(220,87,18));
+    background: linear-gradient(right, rgb(244, 208, 0) , rgb(229,131,8),rgb(220,87,18));
 }
 
 #blog-area{
