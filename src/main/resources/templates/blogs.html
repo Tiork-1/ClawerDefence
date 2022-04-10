@@ -5,11 +5,20 @@
     <title>title</title>
     <link rel="stylesheet" th:href="@{../css/blogs.css}">
     <script type="text/javascript" th:src="@{../js/jquery.js}"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?56d70f6a9f7c7635f4c92ca2ee27f703";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 </head>
 <body>
 <div class="buttons">
     <button class="addblog" onclick="addBlog()">写博客</button>
-    <button class="showdatas">看数据</button>
+    <button class="showdatas" onclick="showData()">看数据</button>
 </div>
 <div class="blog-list" id="blog-list">
 </div>
@@ -40,6 +49,10 @@
 
     function addBlog(){
         location.href = "blogEditor";
+    }
+
+    function showData(){
+        location.href = "blogs/showData";
     }
 
 </script>
