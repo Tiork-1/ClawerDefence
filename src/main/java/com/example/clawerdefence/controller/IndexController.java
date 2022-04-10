@@ -31,20 +31,31 @@ public class IndexController {
 
     @PostMapping("/login")
     @ResponseBody
-    public String login(@RequestBody Map<String,Object> args,HttpServletRequest request){
+    public String login(@RequestBody Map<String,Object> args,HttpServletRequest request,HttpSession session){
         String username = (String) args.get("username");
         String password = (String) args.get("password");
         String verifycode = (String) args.get("verifycode");
-        String code = (String) request.getSession().getAttribute("VerifyCode");
-//        用户输入的验证码和实际验证码转化一下
-        verifycode = verifycode.toUpperCase();
-        code = code.toUpperCase();
-        System.out.println(username+" "+password+" "+verifycode+" "+code);
+//        String code = (String) request.getSession().getAttribute("VerifyCode");
+////        用户输入的验证码和实际验证码转化一下
+//        verifycode = verifycode.toUpperCase();
+//        code = code.toUpperCase();
+//        System.out.println(username+" "+password+" "+verifycode+" "+code);
+//        Result result = new Result(true,"success");
+//        if (!verifycode.equals(code)){
+//            result.setDescribe("验证码错误");
+//            result.setOk(false);
+//        }else if(!username.equals("qiuxinhan")){
+//            result.setDescribe("用户不存在");
+//            result.setOk(false);
+//        }else if(!password.equals("123456")){
+//            result.setDescribe("密码错误");
+//            result.setOk(false);
+//        }else {
+//            StpUtil.login(username);
+//        }
+//        return JSON.toJSONString(result);
         Result result = new Result(true,"success");
-        if (!verifycode.equals(code)){
-            result.setDescribe("验证码错误");
-            result.setOk(false);
-        }else if(!username.equals("qiuxinhan")){
+        if(!username.equals("qiuxinhan")){
             result.setDescribe("用户不存在");
             result.setOk(false);
         }else if(!password.equals("123456")){
@@ -63,7 +74,7 @@ public class IndexController {
 
 
     @GetMapping("/verifyCode")
-    public void verifyCode(HttpServletRequest request, HttpServletResponse response) {
+    public void verifyCode(HttpServletRequest request, HttpServletResponse response,HttpSession session) {
         System.out.println("get code");
         IVerifyCodeGen iVerifyCodeGen = new SimpleCharVerifyCodeGenImpl();
         try {
@@ -72,7 +83,11 @@ public class IndexController {
             String code = verifyCode.getCode();
             LOGGER.info(code);
             //将VerifyCode绑定session
+
+            System.out.println(code);
+            session.setAttribute("VerifyCode", code);
             request.getSession().setAttribute("VerifyCode", code);
+
             //设置响应头
             response.setHeader("Pragma", "no-cache");
             //设置响应头

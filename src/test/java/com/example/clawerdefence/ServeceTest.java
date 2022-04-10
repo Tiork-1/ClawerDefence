@@ -17,12 +17,12 @@ public class ServeceTest {
     //增加文章
     @Test
     public void test01(){
-        Integer id = 123787328;
-        for (int i = 0; i < 50; i++) {
-            id += 1;
-            Passage passage = new Passage(id.toString(),"阳光养猪场","dfjhdjdshfjksdfhk");
-            passageServece.addPassage(passage);
-        }
+//        Integer id = 123787328;
+//        for (int i = 0; i < 50; i++) {
+//            id += 1;
+//            Passage passage = new Passage(id.toString(),"阳光养猪场","dfjhdjdshfjksdfhk");
+//            passageServece.addPassage(passage);
+//        }
     }
 
     @Test
@@ -32,9 +32,9 @@ public class ServeceTest {
 
     @Test
     public void test03(){
-        //        生成随机数
-        Random random = new Random();
-        Integer x = random.nextInt(100000000);
-        System.out.println(x);
+//        //        生成随机数
+//        Random random = new Random();
+//        Integer x = random.nextInt(100000000);
+//        System.out.println(x);
     }
 }
