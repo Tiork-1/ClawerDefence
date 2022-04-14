@@ -2,6 +2,7 @@ package com.example.clawerdefence.controller;
 
 import cn.dev33.satoken.stp.StpUtil;
 import com.alibaba.fastjson.JSON;
+import com.example.clawerdefence.config.LoginHandlerInterceptor;
 import com.example.clawerdefence.pojo.Result;
 import com.example.clawerdefence.utils.IVerifyCodeGen;
 import com.example.clawerdefence.utils.SimpleCharVerifyCodeGenImpl;
@@ -22,6 +23,7 @@ import java.io.IOException;
 import java.util.Map;
 @Controller
 public class IndexController {
+    private static String vCode = null;
     private static final Logger LOGGER = LoggerFactory.getLogger(SimpleCharVerifyCodeGenImpl.class);
 
     @GetMapping("/")
@@ -35,27 +37,16 @@ public class IndexController {
         String username = (String) args.get("username");
         String password = (String) args.get("password");
         String verifycode = (String) args.get("verifycode");
-//        String code = (String) request.getSession().getAttribute("VerifyCode");
-////        用户输入的验证码和实际验证码转化一下
-//        verifycode = verifycode.toUpperCase();
-//        code = code.toUpperCase();
-//        System.out.println(username+" "+password+" "+verifycode+" "+code);
-//        Result result = new Result(true,"success");
-//        if (!verifycode.equals(code)){
-//            result.setDescribe("验证码错误");
-//            result.setOk(false);
-//        }else if(!username.equals("qiuxinhan")){
-//            result.setDescribe("用户不存在");
-//            result.setOk(false);
-//        }else if(!password.equals("123456")){
-//            result.setDescribe("密码错误");
-//            result.setOk(false);
-//        }else {
-//            StpUtil.login(username);
-//        }
-//        return JSON.toJSONString(result);
+        String code = vCode;
+//        用户输入的验证码和实际验证码转化一下
+        verifycode = verifycode.toUpperCase();
+        code = code.toUpperCase();
+        System.out.println(username+" "+password+" "+verifycode+" "+code);
         Result result = new Result(true,"success");
-        if(!username.equals("qiuxinhan")){
+        if (!verifycode.equals(code)){
+            result.setDescribe("验证码错误");
+            result.setOk(false);
+        }else if(!username.equals("qiuxinhan")){
             result.setDescribe("用户不存在");
             result.setOk(false);
         }else if(!password.equals("123456")){
@@ -65,6 +56,17 @@ public class IndexController {
             StpUtil.login(username);
         }
         return JSON.toJSONString(result);
+//        Result result = new Result(true,"success");
+//        if(!username.equals("qiuxinhan")){
+//            result.setDescribe("用户不存在");
+//            result.setOk(false);
+//        }else if(!password.equals("123456")){
+//            result.setDescribe("密码错误");
+//            result.setOk(false);
+//        }else {
+//            StpUtil.login(username);
+//        }
+//        return JSON.toJSONString(result);
     }
 
     @GetMapping("/blogs")
@@ -84,9 +86,10 @@ public class IndexController {
             LOGGER.info(code);
             //将VerifyCode绑定session
 
-            System.out.println(code);
-            session.setAttribute("VerifyCode", code);
-            request.getSession().setAttribute("VerifyCode", code);
+//            System.out.println(code);
+//            session.setAttribute("VerifyCode", code);
+//            request.getSession().setAttribute("VerifyCode", code);
+            vCode = code;
 
             //设置响应头
             response.setHeader("Pragma", "no-cache");
@@ -106,5 +109,18 @@ public class IndexController {
     @GetMapping("/testcode")
     public String testCode(){
         return "testcode";
+    }
+
+    @GetMapping("/closeVerify")
+    @ResponseBody
+    public String closeVerify(){
+
+        if (LoginHandlerInterceptor.needLogin == true){
+            LoginHandlerInterceptor.needLogin = false;
+            return "开启登录认证";
+        }else {
+            LoginHandlerInterceptor.needLogin = true;
+            return "关闭登录认证";
+        }
     }
 }

@@ -31,6 +31,10 @@
             var id = resData[i].id;
             var title = resData[i].title;
             var headWords = resData[i].context;
+            if(title.length > 40){
+                headWords =  headWords.substring(0,40);
+                headWords += "......";
+            }
             if(headWords.length > 50){
                 headWords =  headWords.substring(0,50);
                 headWords += "......>>>";
