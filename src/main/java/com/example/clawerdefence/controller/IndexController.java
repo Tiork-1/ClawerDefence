@@ -3,7 +3,9 @@ package com.example.clawerdefence.controller;
 import cn.dev33.satoken.stp.StpUtil;
 import com.alibaba.fastjson.JSON;
 import com.example.clawerdefence.config.LoginHandlerInterceptor;
+import com.example.clawerdefence.pojo.Passage;
 import com.example.clawerdefence.pojo.Result;
+import com.example.clawerdefence.service.PassageServece;
 import com.example.clawerdefence.utils.IVerifyCodeGen;
 import com.example.clawerdefence.utils.SimpleCharVerifyCodeGenImpl;
 import com.example.clawerdefence.utils.VerifyCode;
@@ -13,7 +15,9 @@ import lombok.NoArgsConstructor;
 import com.example.clawerdefence.pojo.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,11 +25,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 @Controller
 public class IndexController {
     private static Map<String,String> codeMap = new HashMap<>();
     private static final Logger LOGGER = LoggerFactory.getLogger(SimpleCharVerifyCodeGenImpl.class);
+
+    @Autowired
+    PassageServece passageServece;
 
     @GetMapping("/")
     public String index(){
@@ -75,12 +83,7 @@ public class IndexController {
             VerifyCode verifyCode = iVerifyCodeGen.generate(80, 28);
             String code = verifyCode.getCode();
             LOGGER.info(code);
-            //将VerifyCode绑定session
-
-            System.out.println(selfCode);
             codeMap.put(selfCode,code);
-//            session.setAttribute("VerifyCode", code);
-//            request.getSession().setAttribute("VerifyCode", code);
 
             //设置响应头
             response.setHeader("Pragma", "no-cache");
