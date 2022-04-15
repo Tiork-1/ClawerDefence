@@ -40,11 +40,23 @@
     </div>
 </div>
 <script type="text/javascript">
+<!--    生成这个页面的随机数-->
+    //生成n位数字字符串
+    function randomNum(n){
+        var res = "";
+        for(var i=0;i<n;i++){
+            res += Math.floor(Math.random()*10);
+        }
+        return res;
+    }
+    var selfCode = randomNum(10);
+
     function login() {
         var data = {};
         data['username'] = $('#username').val();
         data['password'] = $('#password').val();
         data['verifycode'] = $('#verifycode').val();
+        data['selfCode'] = selfCode;
         $.ajaxSetup({contentType: "application/json; charset=utf-8"})
         $.post("login", JSON.stringify(data), function (res) {
             if (res.ok){
@@ -63,16 +75,18 @@
      * 将验证码写到login.html页面的id = verifyimg 的地方
      */
     function getvCode() {
-        document.getElementById("verifyimg").src = timestamp("http://120.25.159.37:8082/verifyCode");
+        document.getElementById("verifyimg").src = timestamp("http://localhost:8082/verifyCode");
     }
     //为url添加时间戳
     function timestamp(url) {
-        var getTimestamp = new Date().getTime();
+
         if (url.indexOf("?") > -1) {
-            url = url + "&timestamp=" + getTimestamp
+            url = url + "&selfCode=" + selfCode
         } else {
-            url = url + "?timestamp=" + getTimestamp
+            url = url + "?selfCode=" + selfCode
         }
+        var getTimestamp = new Date().getTime();
+        url = url + "&timestamp=" + getTimestamp;
         return url;
     };
 </script>
